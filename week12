@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Input Control</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        th,
+        td {
+            border: 1px solid gray;
+            width: 200px;
+            padding: 5px;
+        }
+        th {
+            background-color: lightsalmon;
+        }
+        Input {
+            padding: 10px;
+            font-size: 12pt;
+        }
+    </style>
+    <script>
+        //==========================================================
+        //Event Handler Zone
+        //----------------------------------------------------------
+        function keyDown(){
+            if(event.keyCode === 13){ //ENTER 키가 입력되었으면
+                //input tag에 입력된 내용을 p태크에 출력한다.
+                let input = document.getElementById("textInput");
+                //document.querySelector('p').innerHTML = input.value;
+                input.value = "";
+                //입력된 단어를 테이블의 새 행을 만드는 함수에 전달한다.
+                appendRow(input.value);
+            }
+        }
+        //==========================================================
+        //Function Zone
+        //----------------------------------------------------------
+        function appendRow() { //이 함수의 기능은 table에 새 행을 만들고 매개변수로 받은 단어를 저장한다.
+            let myTbody = document.getElementById("myTbody");
+            //새로 추가할 행을 생성(위치)
+            let newRow = myTbody.insertRow(myTbody.rows.length);
+            let cell1 = newRow.insertCell(0); //첫번째 셀을 만들고 0으로 만듦
+            let cell2 = newRow.insertCell(1);
+            //새로 만든 행에 두개의 새샐을 생성한다.
+            //새로 만든 셀에 필요한 내용을 저장한다.
+            cell1.innerHTML = newWord;
+            cell2.innerHTML = newWord.length;
+        }
+        //==========================================================
+        window.onload = function() {
+           document.getElementById("textInput").addEventListener("keydown", keyDown);
+            }
+        //==========================================================
+        //==========================================================
+        //==========================================================
+    </script>
+</head>
+
+<body>
+    <h1>Text Input Control</h1>
+    <hr> Input: <input id="textInput" size=40 />
+    <hr>
+    <table>
+        <thead>
+            <th>단어</th>
+            <th>비고</th>
+        </thead>
+        <tbody id="myTbody">
+            
+        </tbody>
+    </table>
+<p>안녕!!!!!</p>
+</body>
+</html>
